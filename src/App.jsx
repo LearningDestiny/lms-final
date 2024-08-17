@@ -10,19 +10,17 @@ import Students from './dashboard/Students';
 import Analytics from './dashboard/Analytics';
 import Settings from './dashboard/Settings';
 import CoursePreview from './dashboard/CoursePreview';
-
-
 import Navbar from './components/navbar'; // Adjust path as necessary
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from './Authentication/AuthContext'; // Adjust path as needed
-
 import Teach from './student/Teach'; // Import the Teach component
 import BusinessForm from './student/BusinessForm';
 import Aboutus from './Pages/Aboutus';
 import CategoryPage from './enrollpages/CategoryPage';
 import CourseDetails from './enrollpages/CourseDetails';
 import StaticEnroll from './student/StaticEnroll';
+import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
 
 // AdminLayout component for protected routes
 const AdminLayout = ({ children }) => {
@@ -44,6 +42,7 @@ const App = () => {
     <Router>
       <div className={`App ${isDarkMode ? 'bg-gray-900 text-gray-200' : 'bg-white text-black'}`}>
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        <ScrollToTop /> {/* Add ScrollToTop component here */}
         <Routes>
           <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
@@ -51,7 +50,6 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/enroll/:courseId" element={<StaticEnroll />} />
-
           <Route path="/teach" element={<Teach />} />
           <Route path="/businessForm" element={<BusinessForm />} />
           <Route path="/aboutus" element={<Aboutus />} />
@@ -68,7 +66,6 @@ const App = () => {
             <Route path="addCourses" element={<AddCourses />} />
             <Route path="allCourses" element={<AllCourses />} />
             <Route path="course/:courseId" element={<CoursePreview />} />
-            
             <Route path="students" element={<Students />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="settings" element={<Settings />} />

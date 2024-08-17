@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaStar, FaPlayCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { courses as initialCourses, categories } from '../Data';
@@ -15,49 +15,52 @@ const Home = ({ isDarkMode }) => {
     navigate(`/enroll/${courseId}`);
   };
 
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={`${isDarkMode ? 'bg-gray-900 text-gray-200' : 'bg-white text-black'} font-body`}>
       <main className="container mx-auto py-2 px-4 md:px-8">
-      <section
-  className="flex flex-col md:flex-row items-center justify-between text-center md:text-left py-16 md:py-32 relative overflow-hidden"
-  style={{
-    backgroundImage: `url(https://1vvan.github.io/blinqpay/images/top-block/background-top.png)`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: 'white',
-  }}
->
-  {/* Overlay for better text visibility */}
-  <div className="absolute inset-0 bg-black opacity-50"></div>
-
-  {/* Text Section */}
-  <div className="z-10 flex-grow max-w-full md:max-w-2xl lg:max-w-4xl p-4 md:mr-8">
-    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-      A Broad Selection of Courses
-    </h1>
-    <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6">
-      Choose from over 10,000 online video courses with new additions published every month. Learning Destiny offers courses covering a wide range of topics, including web development, data science, business, design, marketing, and more. Whether you're a beginner looking to learn the basics or an expert seeking advanced skills, our platform has something for everyone.
-    </p>
-    <div className="flex flex-wrap justify-center md:justify-start gap-4">
-      {categories.slice(0, 5).map((category, index) => (
-        <button
-          key={index}
-          className="text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg bg-blue-500 hover:bg-blue-600 text-white shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
-          onClick={() => navigate(`/category/${category.name}`)} // Assuming category pages are implemented
+        <section
+          className="flex flex-col md:flex-row items-center justify-between text-center md:text-left py-16 md:py-32 relative overflow-hidden"
+          style={{
+            backgroundImage: `url(https://1vvan.github.io/blinqpay/images/top-block/background-top.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            color: 'white',
+          }}
         >
-          {category.name}
-        </button>
-      ))}
-    </div>
-  </div>
+          {/* Overlay for better text visibility */}
+          <div className="absolute inset-0 bg-black opacity-50"></div>
 
-  {/* Logo Section */}
- 
-  <div className="flex-shrink-0 z-10 mt-8 md:mt-0">
-    <img src={pic} alt="Learning Destiny Logo" className="h-24 md:h-35 lg:h-48 rounded-lg shadow-lg" />
-</div>
+          {/* Text Section */}
+          <div className="z-10 flex-grow max-w-full md:max-w-2xl lg:max-w-4xl p-4 md:mr-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+              A Broad Selection of Courses
+            </h1>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6">
+              Choose from over 10,000 online video courses with new additions published every month. Learning Destiny offers courses covering a wide range of topics, including web development, data science, business, design, marketing, and more. Whether you're a beginner looking to learn the basics or an expert seeking advanced skills, our platform has something for everyone.
+            </p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+              {categories.slice(0, 5).map((category, index) => (
+                <button
+                  key={index}
+                  className="text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg bg-blue-500 hover:bg-blue-600 text-white shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
+                  onClick={() => navigate(`/category/${category.name}`)} // Assuming category pages are implemented
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
 
-</section>
+          {/* Logo Section */}
+          <div className="flex-shrink-0 z-10 mt-8 md:mt-0">
+            <img src={pic} alt="Learning Destiny Logo" className="h-24 md:h-35 lg:h-48 rounded-lg shadow-lg" />
+          </div>
+        </section>
 
         <section className="mb-16">
           <div
