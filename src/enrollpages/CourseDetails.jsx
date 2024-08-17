@@ -1,13 +1,13 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { courses } from '../Data';
 import Footer from '../components/Footer';
+import EnrollmentForm from './EnrollmentForm';
 
 const CourseDetails = () => {
   const { courseId } = useParams();
-  const navigate = useNavigate();
-
   const course = courses.find(c => c.id === Number(courseId));
+  const [isFormVisible, setFormVisible] = useState(false);
 
   if (!course) {
     return (
@@ -18,7 +18,11 @@ const CourseDetails = () => {
   }
 
   const handleEnrollClick = () => {
-    navigate(`/enroll/${courseId}`);
+    setFormVisible(true);
+  };
+
+  const handleCloseForm = () => {
+    setFormVisible(false);
   };
 
   return (
@@ -29,7 +33,7 @@ const CourseDetails = () => {
           <img
             src={course.imageUrl}
             alt={course.title}
-            className="w-full md:w-1/3 rounded-lg mb-6 md:mb-0 shadow-lg transition transform hover:scale-105 border border-gray-300"
+            className="w-full md:w-1/3 rounded-lg mb-6 md:mb-0 shadow-lg transition-transform transform hover:scale-105 border border-gray-300"
           />
           <div className="md:ml-8">
             <h2 className="text-5xl font-extrabold mb-4">{course.title}</h2>
@@ -80,6 +84,7 @@ const CourseDetails = () => {
         </div>
       </div>
       <Footer />
+      {isFormVisible && <EnrollmentForm course={course} onClose={handleCloseForm} />}
     </div>
   );
 };
