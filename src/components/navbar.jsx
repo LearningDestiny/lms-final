@@ -192,7 +192,6 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               <span className="text-gray-400 mx-2">/</span>
               <button
                 onClick={() => navigate('/signup')}
-                className="text-gray-300 hover:text-red-400 focus:outline-none transition duration-200"
               >
                 Sign Up
               </button>

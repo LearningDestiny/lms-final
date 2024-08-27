@@ -21,6 +21,10 @@ import CategoryPage from './enrollpages/CategoryPage';
 import CourseDetails from './enrollpages/CourseDetails';
 import StaticEnroll from './student/StaticEnroll';
 import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
+import Cour from './Pages/Cour';
+
+
+
 
 // AdminLayout component for protected routes
 const AdminLayout = ({ children }) => {
@@ -53,6 +57,8 @@ const App = () => {
           <Route path="/teach" element={<Teach />} />
           <Route path="/businessForm" element={<BusinessForm />} />
           <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/cour" element={<Cour />} />
+          
 
           {/* Protected Admin Dashboard Routes */}
           <Route 

@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="text-xl font-bold text-white">Learning Destiny</div>
           <ul className="flex space-x-4">
             <li><Link to="/" className="hover:text-white">Home</Link></li>
-            <li><Link to="/" className="hover:text-white">Courses</Link></li>
+            <li><Link to="/cour" className="hover:text-white">Courses</Link></li>
             <li><Link to="/Aboutus" className="hover:text-white">About Us</Link></li>
             <li><Link to="/" className="hover:text-white">Contact</Link></li>
           </ul>
