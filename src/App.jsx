@@ -58,6 +58,7 @@ const App = () => {
           <Route path="/businessForm" element={<BusinessForm />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/cour" element={<Cour />} />
+          <Route path="/cour/:courseId" element={<CourseDetails />} /> 
           
 
           {/* Protected Admin Dashboard Routes */}
