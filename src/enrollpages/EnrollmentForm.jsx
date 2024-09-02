@@ -1,22 +1,39 @@
 import React, { useState } from 'react';
+import { firestore } from '../firebase'; // Import Firestore instance
+import { collection, addDoc } from 'firebase/firestore'; // Import necessary Firestore functions
 
 const EnrollmentForm = ({ course, onClose }) => {
   const [name, setName] = useState('');
   const [whatsappNumber] = useState('9059898900'); // Pre-filled WhatsApp number
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const message = encodeURIComponent(
-      `Hello, I would like to enroll in the course "${course.title}". My name is ${name} and my WhatsApp number is ${whatsappNumber}.`
-    );
-    const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+    const enrollmentData = {
+      name,
+      whatsappNumber,
+      courseTitle: course.title,
+      timestamp: new Date()
+    };
 
-    // Redirect to WhatsApp
-    window.location.href = url;
+    try {
+      // Store data in Firebase Firestore
+      const docRef = await addDoc(collection(firestore, 'enrollments'), enrollmentData);
+      console.log("Document written with ID: ", docRef.id);
 
-    // Optional: Close the form or navigate away
-    onClose();
+      const message = encodeURIComponent(
+        `Hello, I would like to enroll in the course "${course.title}". My name is ${name} and my WhatsApp number is ${whatsappNumber}.`
+      );
+      const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+      // Redirect to WhatsApp
+      window.location.href = url;
+
+      // Optional: Close the form or navigate away
+      onClose();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   return (
