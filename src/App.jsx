@@ -25,6 +25,7 @@ import Cour from './Pages/Cour';
 import Adminview from './admin-view/Adminview';
 import Adlogin from '../src/adminmes/Adlogin'; 
 import Message from './adminmes/Message';
+import Contactsform from './Pages/Contactsform';
 
 
 
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="/cour/:courseId" element={<CourseDetails />} /> 
           <Route path="/admin-login" element={<Adlogin />} /> 
           <Route path="/message" element={<Message />} /> 
+          <Route path="/Contactsform" element={<Contactsform/>}/>
           
 
           {/* Protected Admin Dashboard Routes */}
