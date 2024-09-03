@@ -13,7 +13,7 @@ const EnrollmentForm = ({ course, onClose }) => {
       name,
       whatsappNumber,
       courseTitle: course.title,
-      timestamp: new Date()
+      timestamp: new Date() // Store the timestamp when the form is submitted
     };
 
     try {

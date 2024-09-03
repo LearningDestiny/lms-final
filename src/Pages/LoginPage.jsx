@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import Navbar from '../components/navbar.jsx';
-import Footer from '../components/Footer';
+
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,7 +20,7 @@ const LoginPage = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/admin-dashboard/allCourses');
+      navigate('/Adminview');
       toast.success('Login successful!');
       console.log("login success");
     } catch (error) {
@@ -72,10 +71,8 @@ const LoginPage = () => {
             </button>
           </form>
           <p className="text-gray-600 text-sm mt-4 text-center">
-            Don't have an account?{' '}
-            <span className="text-blue-500 cursor-pointer" onClick={() => navigate('/signup')}>
-              Sign up
-            </span>
+            Don't have an account? Contact Admin{' '}
+            
           </p>
         </div>
       </div>

@@ -1,202 +1,127 @@
-import React, { useState, useEffect } from 'react';
-import { FaSearch, FaShoppingCart, FaBell, FaUserCircle, FaChevronDown, FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../Authentication/AuthContext';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaSun, FaMoon, FaBars, FaTimes, FaUserCircle, FaSearch } from 'react-icons/fa';
 
 const Navbar = ({ isDarkMode, toggleTheme }) => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  const [showAd, setShowAd] = useState(false); // State to control ad popup
-  const { currentUser } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    const adShown = localStorage.getItem('adShown');
-    const isDesktop = window.innerWidth >= 1024; // Consider desktop view if width is 1024px or greater
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
-    if (!adShown && isDesktop) {
-      setShowAd(true);
-      localStorage.setItem('adShown', 'true');
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/cour?search=${encodeURIComponent(searchQuery.trim())}`);
     }
-  }, []);
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    // Perform logout logic (clear tokens, etc.)
-    // Redirect or update state as needed after logout
-  };
-
-  const closeMenu = () => {
-    setShowMenu(false);
-  };
-
-  const toggleAd = () => {
-    setShowAd(!showAd); // Toggle the ad visibility
   };
 
   return (
-    <nav className={`bg-${isDarkMode ? 'gray-900' : 'gray-100'} text-${isDarkMode ? 'gray-200' : 'gray-900'} px-4 py-3`}>
-      <div className="container mx-auto flex items-center justify-between">
-        {/* Logo and Search */}
-        <div className="flex items-center">
-          <button
-            onClick={() => navigate('/')}
-            className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-black'} focus:outline-none`}
-          >
-            Learning Destiny
-          </button>
-          <div className="relative text-gray-600 ml-4 hidden md:block">
+    <nav className={`bg-${isDarkMode ? 'gray-900' : 'white'} text-${isDarkMode ? 'gray-200' : 'black'} p-4 shadow-lg`}>
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Logo */}
+        <Link to="/" className="text-xl font-bold hover:text-blue-500">
+          Learning Destiny
+        </Link>
+
+        {/* Search Bar */}
+        <div className="relative hidden md:block w-full max-w-md mx-4">
+          <form onSubmit={handleSearch}>
             <input
               type="text"
-              className={`bg-${isDarkMode ? 'gray-800' : 'gray-200'} h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-96`}
-              placeholder="Search for anything"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={`w-full px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500 bg-${isDarkMode ? 'gray-800' : 'gray-200'} text-${isDarkMode ? 'gray-200' : 'black'}`}
+              placeholder="Search for courses"
             />
             <button
               type="submit"
-              onClick={() => console.log('Search clicked')}
-              className="absolute right-0 top-0 mt-3 mr-4"
+              className="absolute right-2 top-2 text-gray-400"
             >
-              <FaSearch className="text-gray-400" />
+              <FaSearch />
             </button>
-          </div>
+          </form>
         </div>
 
-        {/* Hamburger Menu (visible on mobile) */}
-        <div className="md:hidden">
-          {!showMenu ? (
-            <button
-              onClick={() => setShowMenu(true)}
-              className="text-gray-400 focus:outline-none"
-            >
-              <FaBars className="text-2xl" />
-            </button>
-          ) : (
-            <button
-              onClick={closeMenu}
-              className="text-gray-400 focus:outline-none"
-            >
-              <FaTimes className="text-2xl" />
-            </button>
-          )}
+        {/* Hamburger Icon for Mobile */}
+        <div className="md:hidden flex items-center">
+          <button onClick={toggleMenu} className="focus:outline-none">
+            {menuOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+          </button>
         </div>
 
-        {/* Right Side Menu Items */}
-        <div className="hidden md:flex items-center space-x-4">
-          <button
-            onClick={() => navigate('/BusinessForm')}
-            className="hover:text-white focus:outline-none"
-          >
-            Learning Destiny Business
-          </button>
-          <button
-            onClick={() => navigate('/teach')}
-            className="hover:text-white focus:outline-none"
-          >
-            Teach on Learning Destiny
-          </button>
-          <button
-            onClick={() => navigate('/')}
-            className="hover:text-white focus:outline-none"
-          >
-            My learning
-          </button>
-          <FaBell className="hover:text-white cursor-pointer" onClick={toggleAd} />
-          
+        {/* Links for Desktop */}
+        <div className="hidden md:flex items-center space-x-6">
+          <Link to="/aboutus" className="hover:text-blue-500">
+            About Us
+          </Link>
+          <Link to="/teach" className="hover:text-blue-500">
+            Teach
+          </Link>
+          <Link to="/businessForm" className="hover:text-blue-500">
+            Business
+          </Link>
+          <Link to="/cour" className="hover:text-blue-500">
+            Courses
+          </Link>
+          <Link to="/admin-login" className="flex items-center space-x-2 hover:text-blue-500">
+            <FaUserCircle />
+            <span>Admin Login</span>
+          </Link>
           <button onClick={toggleTheme} className="focus:outline-none">
-            {isDarkMode ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-500" />}
+            {isDarkMode ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-800" />}
           </button>
-          {isLoggedIn ? (
-            <div className="relative">
-              <FaUserCircle className="hover:text-white cursor-pointer" />
-              <FaChevronDown className="absolute right-0 top-0 mt-2 text-gray-400" />
-              <ul className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1">
-                <li>
-                  <button
-                    onClick={() => navigate('/profile')}
-                    className="block px-4 py-2 text-sm text-gray-300 hover:text-white focus:outline-none"
-                  >
-                    Profile
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="block px-4 py-2 text-sm text-gray-300 hover:text-white focus:outline-none"
-                  >
-                    Logout
-                  </button>
-                </li>
-              </ul>
-            </div>
-          ) : (
-            !currentUser && (
-              <div className="flex items-center">
-                <button
-                  onClick={() => navigate('/login')}
-                  className="hover:text-white focus:outline-none hidden md:block"
-                >
-                  Login
-                </button>
-                <span className="text-gray-400 mx-2 hidden md:block">/</span>
-                <button
-                  onClick={() => navigate('/signup')}
-                  className="hover:text-white focus:outline-none hidden md:block"
-                >
-                  Sign Up
-                </button>
-              </div>
-            )
-          )}
         </div>
       </div>
 
-      {/* Side Navbar for Mobile */}
-      <div className={`fixed top-0 left-0 h-full w-64 bg-${isDarkMode ? 'gray-900' : 'gray-100'} z-50 transform ${showMenu ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
-        <button
-          className="absolute top-4 right-4 text-gray-400 focus:outline-none"
-          onClick={closeMenu}
-        >
-          <FaTimes className="text-2xl" />
-        </button>
-        <div className="flex flex-col items-start p-6 space-y-4 mt-8">
-          <button
-            onClick={() => { navigate('/BusinessForm'); closeMenu(); }}
-            className="text-gray-300 hover:text-white focus:outline-none"
-          >
-            Learning Destiny Business
-          </button>
-          <button
-            onClick={() => { navigate('/teach'); closeMenu(); }}
-            className="text-gray-300 hover:text-white focus:outline-none"
-          >
-            Teach on Learning Destiny
-          </button>
-          <button
-            onClick={() => { navigate('/'); closeMenu(); }}
-            className="text-gray-300 hover:text-white focus:outline-none"
-          >
-            My learning
-          </button>
-          <FaBell className="text-gray-300 hover:text-white cursor-pointer mb-4" onClick={() => { toggleAd(); closeMenu(); }} />
-          <FaShoppingCart className="text-gray-300 hover:text-white cursor-pointer mb-4" onClick={closeMenu} />
-        </div>
-      </div>
-
-      {/* Advertisement Popup */}
-      {showAd && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div
-            className="relative bg-cover bg-center w-full h-64 md:w-2/3 md:h-80 lg:w-1/2 lg:h-96 p-4"
-            style={{ backgroundImage: `url(https://img.freepik.com/free-psd/3d-sales-discount-price-tag-composition-50-percent_314999-2100.jpg)` }}
-          >
-           <button
-  className="absolute top-2 right-2 bg-red-600 text-white text-xl p-2 rounded focus:outline-none"
-  onClick={toggleAd}
->
-  <FaTimes />
-</button>
-
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className={`md:hidden bg-${isDarkMode ? 'gray-900' : 'white'} text-${isDarkMode ? 'gray-200' : 'black'} p-4`}>
+          <div className="relative mb-4">
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={`w-full px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500 bg-${isDarkMode ? 'gray-800' : 'gray-200'} text-${isDarkMode ? 'gray-200' : 'black'}`}
+                placeholder="Search for courses"
+              />
+              <button
+                type="submit"
+                className="absolute right-2 top-2 text-gray-400"
+              >
+                <FaSearch />
+              </button>
+            </form>
           </div>
+          <Link to="/aboutus" className="block py-2 hover:text-blue-500" onClick={toggleMenu}>
+            About Us
+          </Link>
+          <Link to="/teach" className="block py-2 hover:text-blue-500" onClick={toggleMenu}>
+            Teach
+          </Link>
+          <Link to="/businessForm" className="block py-2 hover:text-blue-500" onClick={toggleMenu}>
+            Business
+          </Link>
+          <Link to="/cour" className="block py-2 hover:text-blue-500" onClick={toggleMenu}>
+            Courses
+          </Link>
+          <Link to="/admin-login" className="block py-2 hover:text-blue-500" onClick={toggleMenu}>
+            Admin Login
+          </Link>
+          <button onClick={toggleTheme} className="w-full text-left py-2 focus:outline-none">
+            {isDarkMode ? (
+              <div className="flex items-center">
+                <FaSun className="text-yellow-500 mr-2" /> Light Mode
+              </div>
+            ) : (
+              <div className="flex items-center">
+                <FaMoon className="text-gray-800 mr-2" /> Dark Mode
+              </div>
+            )}
+          </button>
         </div>
       )}
     </nav>

@@ -22,7 +22,9 @@ import CourseDetails from './enrollpages/CourseDetails';
 import StaticEnroll from './student/StaticEnroll';
 import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
 import Cour from './Pages/Cour';
-
+import Adminview from './admin-view/Adminview';
+import Adlogin from '../src/adminmes/Adlogin'; 
+import Message from './adminmes/Message';
 
 
 
@@ -59,6 +61,8 @@ const App = () => {
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/cour" element={<Cour />} />
           <Route path="/cour/:courseId" element={<CourseDetails />} /> 
+          <Route path="/admin-login" element={<Adlogin />} /> 
+          <Route path="/message" element={<Message />} /> 
           
 
           {/* Protected Admin Dashboard Routes */}
@@ -70,6 +74,7 @@ const App = () => {
               </AdminLayout>
             }
           >
+            <Route path='adminview' element={<Adminview/>}/>
             <Route path="addCourses" element={<AddCourses />} />
             <Route path="allCourses" element={<AllCourses />} />
             <Route path="course/:courseId" element={<CoursePreview />} />
