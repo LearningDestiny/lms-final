@@ -602,6 +602,813 @@ export const courses = [
     ]
   },
   {
+    courseId: 13,
+    id: 13,
+    title: "Natural Language Processing (NLP) Mastery",
+    instructor: "Ravi Kumar",
+    rating: 4.7,
+    ratingCount: 220,
+    price: "9,499 Rs",
+    imageUrl: "https://media.geeksforgeeks.org/wp-content/uploads/20240524132640/nlp-banner.webp",
+    lastUpdated: "March 2025",
+    duration: "140 hours",
+    lectureCount: 50,
+    description: "Master NLP techniques using Python, covering everything from text preprocessing and sentiment analysis to transformers, machine translation, and chatbot development.",
+    highlights: [
+      'Introduction to NLP and Text Preprocessing',
+      'Text Representation with BoW, TF-IDF, and Word Embeddings',
+      'Sentiment Analysis and Sequence Models',
+      'Transformers, Attention Mechanisms, and BERT/GPT',
+      'Speech Recognition and Practical Applications of NLP',
+      'Capstone Project: End-to-End NLP Solution'
+    ],
+    roadmap: [
+      {
+        month: "Month 1",
+        weeks: [
+          {
+            week: "Week 1: Introduction to NLP",
+            topics: [
+              'What is NLP?',
+              'NLP vs. Traditional Machine Learning',
+              'Key Challenges in NLP',
+              'Real-World Applications of NLP',
+            ]
+          },
+          {
+            week: "Week 2: Text Preprocessing Techniques",
+            topics: [
+              'Tokenization: Word-Level, Sentence-Level, Subword',
+              'Normalization: Lowercasing, Stemming, Lemmatization',
+              'Removing Stop Words, Punctuation, Special Characters',
+              'Case Study: Preprocessing Dataset for Sentiment Analysis',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 2",
+        weeks: [
+          {
+            week: "Week 1: Text Representation",
+            topics: [
+              'Bag of Words (BoW) Representation',
+              'TF-IDF: Term Frequency-Inverse Document Frequency',
+              'Word Embeddings: Word2Vec, GloVe, FastText',
+              'Case Study: Text Classification with BoW and TF-IDF',
+            ]
+          },
+          {
+            week: "Week 2: NLP with Python (NLTK and SpaCy)",
+            topics: [
+              'Introduction to NLTK: Tokenization, POS Tagging, Parsing',
+              'SpaCy: Named Entity Recognition (NER) and Dependency Parsing',
+              'Case Study: NER using SpaCy on a Real-World Dataset',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 3",
+        weeks: [
+          {
+            week: "Week 1: Sentiment Analysis",
+            topics: [
+              'Introduction to Sentiment Analysis',
+              'Lexicon-Based Approaches for Sentiment Classification',
+              'Machine Learning Approaches: Logistic Regression, Naive Bayes',
+              'Case Study: Building Sentiment Classifier on Product Reviews Dataset',
+            ]
+          },
+          {
+            week: "Week 2: Sequence Models for NLP",
+            topics: [
+              'Introduction to Sequence Models',
+              'Recurrent Neural Networks (RNNs)',
+              'LSTM Networks and GRUs',
+              'Case Study: Text Generation using LSTM',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 4",
+        weeks: [
+          {
+            week: "Week 1: Machine Translation and Sequence-to-Sequence Models",
+            topics: [
+              'Introduction to Machine Translation',
+              'Encoder-Decoder Architecture for Seq2Seq Learning',
+              'Attention Mechanism for Translation Models',
+              'Case Study: Machine Translation with Seq2Seq Model',
+            ]
+          },
+          {
+            week: "Week 2: Transformers and Attention Mechanisms",
+            topics: [
+              'Introduction to Transformer Architecture',
+              'Self-Attention Mechanism in Transformers',
+              'BERT for Text Representation, GPT for Text Generation',
+              'Case Study: Fine-Tuning BERT for Text Classification',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 5",
+        weeks: [
+          {
+            week: "Week 1: Natural Language Generation (NLG)",
+            topics: [
+              'Introduction to Text Generation',
+              'Generative Models: GPT, GPT-3 for Text Generation',
+              'Applications of NLG: Creative Writing, Code Generation',
+              'Case Study: Building Text Generator using GPT-2',
+            ]
+          },
+          {
+            week: "Week 2: Speech Recognition and Text-to-Speech",
+            topics: [
+              'Introduction to Speech Recognition Systems',
+              'Deep Learning for Speech-to-Text Tasks',
+              'Text-to-Speech Systems (TTS)',
+              'Case Study: Implementing Simple Speech Recognition with Python',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 6",
+        weeks: [
+          {
+            week: "Week 1: Practical NLP Applications",
+            topics: [
+              'Building a Chatbot: Rule-Based, Retrieval-Based, Generative',
+              'Document Classification Techniques',
+              'Named Entity Recognition (NER) with Deep Learning',
+              'Case Study: Building an End-to-End Chatbot with NLP Tools',
+            ]
+          },
+          {
+            week: "Week 2: Capstone Project",
+            topics: [
+              'Problem Definition: Choosing a Real-World NLP Problem',
+              'Data Collection and Preprocessing',
+              'Model Building and Training',
+              'Model Evaluation and Fine-Tuning',
+              'Final Presentation: Solution, Code, and Insights',
+            ]
+          }
+        ]
+      }
+    ]
+  },  
+  {
+    courseId: 12,
+    id: 12,
+    title: "Mastering Computer Vision",
+    instructor: "Aditya Singh",
+    rating: 4.9,
+    ratingCount: 240,
+    price: "10,999 Rs",
+    imageUrl: "https://media.licdn.com/dms/image/D4D12AQGR4_OR5cXPVg/article-cover_image-shrink_720_1280/0/1698121088127?e=2147483647&v=beta&t=tm_UPSfa7e25WTOlIy4DxDXGkSDHVSOFtA0Q0XW5A_Q",
+    lastUpdated: "February 2025",
+    duration: "130 hours",
+    lectureCount: 48,
+    description: "Master computer vision techniques and applications, from image preprocessing to deep learning-based object detection, face recognition, and 3D vision.",
+    highlights: [
+      'Introduction to Computer Vision and Image Processing',
+      'Image Segmentation, Feature Detection, and Matching',
+      'Deep Learning for Image Classification and Object Detection',
+      'Generative Models (GANs) and Face Recognition',
+      'Real-time Video Processing and 3D Computer Vision',
+      'Capstone Project on Real-world Computer Vision Problems',
+    ],
+    roadmap: [
+      {
+        month: "Month 1",
+        weeks: [
+          {
+            week: "Week 1: Introduction to Computer Vision",
+            topics: [
+              'What is Computer Vision?',
+              'Image Processing vs. Computer Vision',
+              'Basics of Image Representation and Formats',
+            ]
+          },
+          {
+            week: "Week 2: Image Preprocessing",
+            topics: [
+              'Image Transformation Techniques',
+              'Filtering and Enhancement',
+              'Edge Detection Techniques',
+              'Histogram Equalization',
+              'Case Study: Preprocessing for Face Recognition',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 2",
+        weeks: [
+          {
+            week: "Week 1: Image Segmentation and Thresholding",
+            topics: [
+              'Image Thresholding Techniques',
+              'Contour Detection and Object Boundary Extraction',
+              'Segmentation Techniques: Region-based, Watershed',
+              'Case Study: Medical Image Segmentation',
+            ]
+          },
+          {
+            week: "Week 2: Feature Detection and Matching",
+            topics: [
+              'Keypoint Detection: Harris Corner, Shi-Tomasi',
+              'Feature Descriptors: SIFT, SURF',
+              'Feature Matching Techniques',
+              'Case Study: Object Detection using Feature Matching',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 3",
+        weeks: [
+          {
+            week: "Week 1: Image Classification with Deep Learning",
+            topics: [
+              'Introduction to CNNs',
+              'Building a CNN for Image Classification',
+              'Transfer Learning with Pretrained Models',
+              'Case Study: Image Classification using Pretrained CNN',
+            ]
+          },
+          {
+            week: "Week 2: Object Detection and Recognition",
+            topics: [
+              'Introduction to Object Detection',
+              'Object Detection Algorithms: YOLO, SSD',
+              'Real-Time Object Detection',
+              'Case Study: Implementing YOLO for Real-Time Detection',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 4",
+        weeks: [
+          {
+            week: "Week 1: Image Segmentation with Deep Learning",
+            topics: [
+              'Semantic Segmentation',
+              'Fully Convolutional Networks (FCNs)',
+              'Advanced Segmentation Models: UNet, Mask R-CNN',
+              'Case Study: Autonomous Driving Image Segmentation',
+            ]
+          },
+          {
+            week: "Week 2: Generative Models in Computer Vision",
+            topics: [
+              'Introduction to Generative Models',
+              'Autoencoders for Image Reconstruction',
+              'Generative Adversarial Networks (GANs)',
+              'Case Study: Image Generation using GANs',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 5",
+        weeks: [
+          {
+            week: "Week 1: Face Detection and Recognition",
+            topics: [
+              'Introduction to Face Detection: Haar Cascades, HOG',
+              'Face Recognition Techniques: Eigenfaces, Fisherfaces, LBPH',
+              'Deep Learning for Face Recognition: FaceNet, DeepFace',
+              'Case Study: Building a Face Recognition System with CNNs',
+            ]
+          },
+          {
+            week: "Week 2: Video Processing and Motion Analysis",
+            topics: [
+              'Introduction to Video Processing',
+              'Optical Flow and Motion Detection',
+              'Background Subtraction',
+              'Object Tracking Techniques: KLT, Mean Shift, CamShift',
+              'Case Study: Real-time Object Tracking in Video Sequences',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 6",
+        weeks: [
+          {
+            week: "Week 1: 3D Computer Vision",
+            topics: [
+              'Introduction to 3D Computer Vision',
+              'Depth Estimation: Stereo Vision, Depth Maps, LiDAR',
+              'Point Clouds and 3D Object Detection',
+              'Case Study: 3D Reconstruction from 2D Images',
+            ]
+          },
+          {
+            week: "Week 2: Capstone Project",
+            topics: [
+              'Problem Definition: Choose a Real-World Problem',
+              'Data Collection and Preprocessing',
+              'Model Building and Training',
+              'Model Evaluation and Optimization',
+              'Final Presentation',
+            ]
+          }
+        ]
+      }
+    ]
+  },  
+  {
+    courseId: 11,
+    id: 11,
+    title: "Deep Learning Mastery",
+    instructor: "Priya Singh",
+    rating: 4.8,
+    ratingCount: 280,
+    price: "9,999 Rs",
+    imageUrl: "https://media.licdn.com/dms/image/C5612AQGWgEjWhZFW9g/article-cover_image-shrink_600_2000/0/1520154187596?e=2147483647&v=beta&t=afSP8LTiYI900xLA70jEgSe9KuGkBhgImjccc3vWDmU",
+    lastUpdated: "January 2025",
+    duration: "150 hours",
+    lectureCount: 50,
+    description: "Master deep learning techniques and neural networks, covering advanced topics like CNNs, RNNs, Autoencoders, GANs, NLP, and deployment of models for real-world applications.",
+    highlights: [
+      'Deep Learning Fundamentals: Neural Networks, Backpropagation',
+      'TensorFlow and Keras for Deep Learning',
+      'Convolutional and Recurrent Neural Networks',
+      'Generative Adversarial Networks (GANs)',
+      'Natural Language Processing with Deep Learning',
+      'Capstone Project and Model Deployment',
+    ],
+    roadmap: [
+      {
+        month: "Month 1",
+        weeks: [
+          {
+            week: "Week 1: Introduction to Deep Learning",
+            topics: [
+              'Overview of AI, Machine Learning, and Deep Learning',
+              'Real-world Applications of Deep Learning',
+              'How Neural Networks Work: Neurons, Weights, and Biases',
+              'Activation Functions: Sigmoid, ReLU, Tanh',
+            ]
+          },
+          {
+            week: "Week 2: Neural Networks Fundamentals",
+            topics: [
+              'Structure of a Neural Network',
+              'Backpropagation and Optimization',
+              'Overfitting and Underfitting: Regularization Techniques',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 2",
+        weeks: [
+          {
+            week: "Week 1: Deep Learning with TensorFlow and Keras",
+            topics: [
+              'Introduction to TensorFlow',
+              'Building Neural Networks with Keras',
+              'Evaluating and Visualizing Model Performance',
+              'Case Study: MNIST Handwritten Digit Classification',
+            ]
+          },
+          {
+            week: "Week 2: Convolutional Neural Networks (CNNs)",
+            topics: [
+              'Introduction to CNNs',
+              'Building a CNN from Scratch',
+              'Transfer Learning with CNNs',
+              'Case Study: Image Classification using Pretrained Model',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 3",
+        weeks: [
+          {
+            week: "Week 1: Recurrent Neural Networks (RNNs) and LSTMs",
+            topics: [
+              'Introduction to RNNs',
+              'LSTM Networks',
+              'Applications of RNNs and LSTMs',
+              'Case Study: Text Sentiment Analysis with LSTM',
+            ]
+          },
+          {
+            week: "Week 2: Autoencoders and Variational Autoencoders",
+            topics: [
+              'Understanding Autoencoders',
+              'Variational Autoencoders',
+              'Case Study: Image Compression with Autoencoders',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 4",
+        weeks: [
+          {
+            week: "Week 1: Generative Adversarial Networks (GANs)",
+            topics: [
+              'Introduction to GANs',
+              'Variations of GANs: DCGAN, Conditional GANs, StyleGANs',
+              'Applications of GANs: Image Synthesis, Deepfakes',
+              'Case Study: Implementing a GAN for Image Generation',
+            ]
+          },
+          {
+            week: "Week 2: Deep Learning for Natural Language Processing (NLP)",
+            topics: [
+              'Word Embeddings and Word2Vec',
+              'Sequence-to-Sequence Models',
+              'Attention Mechanism and Transformers (BERT, GPT)',
+              'Case Study: Neural Network for Machine Translation',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 5",
+        weeks: [
+          {
+            week: "Week 1: Deep Learning in Computer Vision",
+            topics: [
+              'Image Classification and Object Detection with CNNs',
+              'Advanced CNN Architectures: U-Net, Mask R-CNN',
+              'Case Study: Object Detection using YOLO',
+            ]
+          },
+          {
+            week: "Week 2: Deep Learning in Practice",
+            topics: [
+              'Best Practices for Deep Learning',
+              'Model Deployment with TensorFlow Serving or Flask',
+              'Case Study: Real-Time Image Classification Deployment',
+            ]
+          },
+          {
+            week: "Week 3: Capstone Project",
+            topics: [
+              'Problem Definition',
+              'Data Collection and Preprocessing',
+              'Model Building and Training',
+              'Model Evaluation and Optimization',
+              'Final Presentation',
+            ]
+          }
+        ]
+      }
+    ]
+  },  
+  {
+    courseId: 10,
+    id: 10,
+    title: "Data Science and Machine Learning",
+    instructor: "Ravi Kumar",
+    rating: 4.9,
+    ratingCount: 250,
+    price: "8,999 Rs",
+    imageUrl: "https://cdn.educba.com/academy/wp-content/uploads/2020/01/Deep-Learning.jpg",
+    lastUpdated: "December 2024",
+    duration: "120 hours",
+    lectureCount: 45,
+    description: "Master data science and machine learning techniques using Python and Power BI, along with deep learning, natural language processing, and computer vision concepts.",
+    highlights: [
+      'Data Science Lifecycle and Key Roles',
+      'Data Analytics with Power BI',
+      'Python for Data Science',
+      'Machine Learning with Scikit-learn',
+      'Deep Learning and Neural Networks',
+      'Natural Language Processing and Computer Vision',
+      'Capstone Project and Model Deployment',
+    ],
+    roadmap: [
+      {
+        month: "Month 1",
+        weeks: [
+          {
+            week: "Week 1: Introduction to Data Science",
+            topics: [
+              'What is Data Science?',
+              'Data Science Lifecycle',
+              'Key Roles in Data Science',
+              'Overview of Python for Data Science',
+            ]
+          },
+          {
+            week: "Week 2: Data Analytics with Power BI",
+            topics: [
+              'Introduction to Data Analytics',
+              'Overview of Power BI',
+              'Installing and Setting Up Power BI',
+              'Importing Data into Power BI',
+            ]
+          },
+          {
+            week: "Week 3: Data Transformation in Power BI",
+            topics: [
+              'Data Cleaning and Shaping',
+              'Data Modeling and Relationships',
+              'Using Power Query for Data Preparation',
+            ]
+          },
+          {
+            week: "Week 4: Creating Visualizations in Power BI",
+            topics: [
+              'Types of Visualizations',
+              'Interactive Dashboards',
+              'Formatting and Customizing Visuals',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 2",
+        weeks: [
+          {
+            week: "Week 1: Exploratory Data Analysis in Power BI",
+            topics: [
+              'Filtering, Slicing, and Drilling Down into Data',
+              'Using DAX for Calculations and Measures',
+              'Creating Reports and Sharing Insights',
+            ]
+          },
+          {
+            week: "Week 2: Introduction to SQL for Data Analytics",
+            topics: [
+              'Database Concepts: Tables, Joins, and Relationships',
+              'Writing Queries to Extract Data',
+              'Advanced SQL Functions: Aggregations, Subqueries, and Window Functions',
+              'SQL for Reporting and Automating Queries',
+            ]
+          },
+          {
+            week: "Week 3: Python for Data Science",
+            topics: [
+              'Python Basics: Variables, Data Types, Control Flow',
+              'Defining Functions and Using Libraries in Python',
+              'Introduction to NumPy, Pandas, Matplotlib, and Seaborn',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 3",
+        weeks: [
+          {
+            week: "Week 1: Data Collection and Cleaning",
+            topics: [
+              'Importing Data from Various Sources',
+              'Data Cleaning Techniques',
+              'Data Wrangling with Pandas',
+            ]
+          },
+          {
+            week: "Week 2: Exploratory Data Analysis (EDA)",
+            topics: [
+              'Importance of EDA',
+              'Descriptive Statistics: Mean, Median, Mode',
+              'Data Visualization Techniques: Histograms, Box Plots, Heatmaps',
+              'Correlation and Covariance Analysis',
+            ]
+          },
+          {
+            week: "Week 3: Introduction to Machine Learning",
+            topics: [
+              'What is Machine Learning?',
+              'Types of Machine Learning',
+              'Overview of Scikit-learn',
+              'Train-Test Split and Cross-Validation',
+              'Introduction to Regression and Classification',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 4",
+        weeks: [
+          {
+            week: "Week 1: Supervised Learning",
+            topics: [
+              'Linear Regression',
+              'Logistic Regression',
+              'Decision Trees and Random Forests',
+              'Model Evaluation Metrics: Accuracy, Precision, Recall, F1 Score',
+              'Hyperparameter Tuning and Cross-Validation',
+            ]
+          },
+          {
+            week: "Week 2: Unsupervised Learning",
+            topics: [
+              'Clustering Algorithms: K-Means, Hierarchical Clustering',
+              'Dimensionality Reduction: PCA',
+              'Association Rule Learning: Apriori, Eclat',
+            ]
+          },
+          {
+            week: "Week 3: Introduction to Deep Learning",
+            topics: [
+              'What is Deep Learning?',
+              'Overview of Neural Networks',
+              'Introduction to TensorFlow and Keras',
+              'Building a Simple Neural Network',
+              'Activation Functions and Optimizers',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 5",
+        weeks: [
+          {
+            week: "Week 1: Natural Language Processing (NLP)",
+            topics: [
+              'What is Natural Language Processing (NLP)?',
+              'Text Preprocessing: Tokenization, Lemmatization, Stemming',
+              'Bag of Words and TF-IDF',
+              'Sentiment Analysis with Python',
+            ]
+          },
+          {
+            week: "Week 2: Introduction to Computer Vision",
+            topics: [
+              'What is Computer Vision?',
+              'Image Processing Techniques',
+              'Introduction to OpenCV',
+              'Building a Simple Image Classifier with CNNs',
+            ]
+          },
+          {
+            week: "Week 3: Final Project and Deployment",
+            topics: [
+              'End-to-End Data Science Case Study',
+              'Model Deployment with Flask or Streamlit',
+              'Course Wrap-Up and Career Guidance',
+            ]
+          }
+        ]
+      }
+    ]
+  },  
+  {
+    courseId: 9,
+    id: 9,
+    title: "Introduction to Machine Learning",
+    instructor: "Aditya Singh",
+    rating: 4.7,
+    ratingCount: 220,
+    price: "7,499 Rs",
+    imageUrl: "https://miro.medium.com/v2/resize:fit:1400/1*cG6U1qstYDijh9bPL42e-Q.jpeg",
+    lastUpdated: "November 2024",
+    duration: "90 hours",
+    lectureCount: 35,
+    description: "Learn the fundamentals of machine learning, including supervised, unsupervised, and reinforcement learning techniques, with real-world applications.",
+    highlights: [
+      'Types of Machine Learning: Supervised, Unsupervised, and Reinforcement Learning',
+      'Data Preprocessing Techniques',
+      'Supervised Learning: Regression and Classification',
+      'Unsupervised Learning and Dimensionality Reduction',
+      'Ensemble Methods and Neural Networks',
+      'Model Deployment and Capstone Project',
+    ],
+    roadmap: [
+      {
+        month: "Month 1",
+        weeks: [
+          {
+            week: "Week 1: Introduction to Machine Learning",
+            topics: [
+              'Definition and Key Concepts',
+              'Machine Learning vs. AI vs. Data Science',
+              'Types of Machine Learning',
+              'Real-World Applications',
+              'Machine Learning Workflow',
+            ]
+          },
+          {
+            week: "Week 2: Data Preprocessing for Machine Learning",
+            topics: [
+              'Importance of Data Preprocessing',
+              'Handling Missing Data',
+              'Feature Scaling',
+              'Encoding Categorical Variables',
+              'Splitting the Dataset',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 2",
+        weeks: [
+          {
+            week: "Week 1: Supervised Learning – Regression",
+            topics: [
+              'Linear Regression',
+              'Polynomial Regression',
+              'Ridge and Lasso Regression',
+              'Case Study: Predictive Analysis',
+            ]
+          },
+          {
+            week: "Week 2: Supervised Learning – Classification",
+            topics: [
+              'Logistic Regression',
+              'k-Nearest Neighbors (k-NN)',
+              'Decision Trees',
+              'Support Vector Machines (SVM)',
+              'Case Study: Real-World Classification',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 3",
+        weeks: [
+          {
+            week: "Week 1: Model Evaluation and Optimization",
+            topics: [
+              'Confusion Matrix, ROC Curve, AUC Score',
+              'Overfitting and Underfitting',
+              'Hyperparameter Tuning',
+              'Cross-Validation',
+              'Case Study: Model Evaluation',
+            ]
+          },
+          {
+            week: "Week 2: Unsupervised Learning",
+            topics: [
+              'K-Means Clustering',
+              'Hierarchical Clustering',
+              'Dimensionality Reduction with PCA and t-SNE',
+              'Case Study: Clustering and Dimensionality Reduction',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 4",
+        weeks: [
+          {
+            week: "Week 1: Ensemble Learning",
+            topics: [
+              'Introduction to Ensemble Methods',
+              'Random Forest',
+              'AdaBoost',
+              'Gradient Boosting Machines (GBM)',
+              'Case Study: Improving Predictive Performance',
+            ]
+          },
+          {
+            week: "Week 2: Introduction to Neural Networks and Deep Learning",
+            topics: [
+              'Basics of Neural Networks',
+              'Feedforward Neural Networks',
+              'Introduction to CNNs',
+              'Case Study: Building a Neural Network for Classification',
+            ]
+          }
+        ]
+      },
+      {
+        month: "Month 5",
+        weeks: [
+          {
+            week: "Week 1: Model Deployment and Machine Learning in Production",
+            topics: [
+              'Introduction to Model Deployment',
+              'Model Deployment Tools: Flask, FastAPI, Streamlit',
+              'Monitoring and Maintaining Models',
+              'Case Study: Deploying a Model',
+            ]
+          },
+          {
+            week: "Week 2: Capstone Project",
+            topics: [
+              'Problem Definition',
+              'Data Collection and Preprocessing',
+              'Model Building',
+              'Model Evaluation and Optimization',
+              'Final Presentation',
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  
+  {
     courseId: 8,
     id: 8,
     title: "Data Science with Python",
@@ -711,6 +1518,10 @@ export const courses = [
       }
     ]
   }
+  
+
+
+
   
   
   
