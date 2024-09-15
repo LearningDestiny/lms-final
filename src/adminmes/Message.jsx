@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { firestore } from '../firebase'; // Import Firestore instance
 import { collection, getDocs, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import EnrollmentForm from '../enrollpages/EnrollmentForm'; // Import EnrollmentForm component
 
 const Message = () => {
   const [teachers, setTeachers] = useState([]);
@@ -8,20 +9,32 @@ const Message = () => {
   const [enrollments, setEnrollments] = useState([]);
   const [courses, setCourses] = useState([]);
   const [editingCourse, setEditingCourse] = useState(null);
-  const [newCourse, setNewCourse] = useState({
-    title: '',
-    instructor: '',
-    rating: 0,
-    ratingCount: 0,
-    price: '',
-    imageUrl: '',
-    lastUpdated: '',
-    duration: '',
-    lectureCount: 0,
-    description: '',
-    highlights: '',
-    months: 1, // Track the number of months for the roadmap
-    roadmap: []
+  const [editingEnrollment, setEditingEnrollment] = useState(null);
+  const [editingTeacher, setEditingTeacher] = useState(null);
+  const [editingBusinessForm, setEditingBusinessForm] = useState(null);
+
+  // New state for enrollment form visibility and selected course
+  const [showEnrollmentForm, setShowEnrollmentForm] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
+  // State for adding/editing teachers
+  const [newTeacher, setNewTeacher] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    experience: '',
+    qualifications: '',
+    referralCode: '',
+  });
+
+  // State for adding/editing business forms
+  const [newBusinessForm, setNewBusinessForm] = useState({
+    name: '',
+    age: '',
+    gender: '',
+    email: '',
+    message: '',
   });
 
   useEffect(() => {
@@ -50,106 +63,122 @@ const Message = () => {
     fetchData();
   }, []);
 
-  // Add or update course in Firestore
-  const handleCourseSubmit = async (e) => {
-    e.preventDefault();
-    const formattedCourse = {
-      ...newCourse,
-      highlights: newCourse.highlights.split(','), // Assume highlights are comma-separated
-      roadmap: newCourse.roadmap
-    };
+  // Show enrollment form for a specific course
+  const handleEnrollClick = (course) => {
+    setSelectedCourse(course);
+    setShowEnrollmentForm(true);
+  };
 
+  // Close enrollment form
+  const handleCloseEnrollmentForm = () => {
+    setShowEnrollmentForm(false);
+    setSelectedCourse(null);
+    setEditingEnrollment(null);
+  };
+
+  // Edit an enrollment
+  const handleEditEnrollment = (enrollment) => {
+    setEditingEnrollment(enrollment);
+    setShowEnrollmentForm(true);
+  };
+
+  // Delete enrollment from Firestore
+  const handleDeleteEnrollment = async (id) => {
     try {
-      if (editingCourse) {
-        // Update course if editing
-        await updateDoc(doc(firestore, 'courses', editingCourse.id), formattedCourse);
-        alert("Course updated successfully!");
-      } else {
-        // Add new course
-        await addDoc(collection(firestore, 'courses'), formattedCourse);
-        alert("Course added successfully!");
-      }
-
-      // Fetch updated courses
-      const coursesSnapshot = await getDocs(collection(firestore, 'courses'));
-      const fetchedCourses = coursesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setCourses(fetchedCourses);
-
-      // Reset the form
-      setNewCourse({
-        title: '',
-        instructor: '',
-        rating: 0,
-        ratingCount: 0,
-        price: '',
-        imageUrl: '',
-        lastUpdated: '',
-        duration: '',
-        lectureCount: 0,
-        description: '',
-        highlights: '',
-        months: 1,
-        roadmap: []
-      });
-      setEditingCourse(null);
+      await deleteDoc(doc(firestore, 'enrollments', id));
+      setEnrollments(enrollments.filter(enrollment => enrollment.id !== id));
+      alert('Enrollment deleted successfully!');
     } catch (error) {
-      console.error("Error saving course: ", error);
+      console.error('Error deleting enrollment:', error);
     }
   };
 
-  // Delete course from Firestore
-  const handleDeleteCourse = async (id) => {
-    await deleteDoc(doc(firestore, 'courses', id));
-    setCourses(courses.filter(course => course.id !== id));
+  // Edit teacher
+  const handleEditTeacher = (teacher) => {
+    setEditingTeacher(teacher);
+    setNewTeacher({ ...teacher });
   };
 
-  // Handle course edit
-  const handleEditCourse = (course) => {
-    setEditingCourse(course);
-    setNewCourse({
-      title: course.title,
-      instructor: course.instructor,
-      rating: course.rating,
-      ratingCount: course.ratingCount,
-      price: course.price,
-      imageUrl: course.imageUrl,
-      lastUpdated: course.lastUpdated,
-      duration: course.duration,
-      lectureCount: course.lectureCount,
-      description: course.description,
-      highlights: course.highlights.join(', '),
-      months: course.roadmap.length,
-      roadmap: course.roadmap
-    });
+  // Delete teacher from Firestore
+  const handleDeleteTeacher = async (id) => {
+    try {
+      await deleteDoc(doc(firestore, 'teachers', id));
+      setTeachers(teachers.filter(teacher => teacher.id !== id));
+      alert('Teacher deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting teacher:', error);
+    }
   };
 
-  // Handle number of months change
-  const handleMonthChange = (e) => {
-    const months = parseInt(e.target.value);
-    setNewCourse({
-      ...newCourse,
-      months,
-      roadmap: Array(months).fill({ month: '', weeks: [] }) // Initialize roadmap for each month
-    });
+  // Edit business form
+  const handleEditBusinessForm = (form) => {
+    setEditingBusinessForm(form);
+    setNewBusinessForm({ ...form });
   };
 
-  // Handle roadmap change (for week titles and topics)
-  const handleRoadmapChange = (monthIndex, weekIndex, field, value) => {
-    const updatedRoadmap = [...newCourse.roadmap];
-    updatedRoadmap[monthIndex].weeks[weekIndex][field] = value;
-    setNewCourse({ ...newCourse, roadmap: updatedRoadmap });
+  // Delete business form from Firestore
+  const handleDeleteBusinessForm = async (id) => {
+    try {
+      await deleteDoc(doc(firestore, 'businessForms', id));
+      setBusinessForms(businessForms.filter(form => form.id !== id));
+      alert('Business form deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting business form:', error);
+    }
   };
 
-  // Add a week to the month in the roadmap
-  const addWeek = (monthIndex) => {
-    const updatedRoadmap = [...newCourse.roadmap];
-    updatedRoadmap[monthIndex].weeks.push({ week: '', topics: [] });
-    setNewCourse({ ...newCourse, roadmap: updatedRoadmap });
+  // Submit updates for teachers
+  const handleTeacherSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingTeacher) {
+        await updateDoc(doc(firestore, 'teachers', editingTeacher.id), newTeacher);
+        alert('Teacher updated successfully!');
+      } else {
+        await addDoc(collection(firestore, 'teachers'), newTeacher);
+        alert('Teacher added successfully!');
+      }
+      const teachersSnapshot = await getDocs(collection(firestore, 'teachers'));
+      setTeachers(teachersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      setNewTeacher({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        experience: '',
+        qualifications: '',
+        referralCode: '',
+      });
+      setEditingTeacher(null);
+    } catch (error) {
+      console.error('Error saving teacher:', error);
+    }
   };
 
-  // Handle image URL input
-  const handleImageUpload = (e) => {
-    setNewCourse({ ...newCourse, imageUrl: e.target.value });
+  // Submit updates for business forms
+  const handleBusinessFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingBusinessForm) {
+        await updateDoc(doc(firestore, 'businessForms', editingBusinessForm.id), newBusinessForm);
+        alert('Business form updated successfully!');
+      } else {
+        await addDoc(collection(firestore, 'businessForms'), newBusinessForm);
+        alert('Business form added successfully!');
+      }
+      const businessFormsSnapshot = await getDocs(collection(firestore, 'businessForms'));
+      setBusinessForms(businessFormsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      setNewBusinessForm({
+        name: '',
+        age: '',
+        gender: '',
+        email: '',
+        message: '',
+      });
+      setEditingBusinessForm(null);
+    } catch (error) {
+      console.error('Error saving business form:', error);
+    }
   };
 
   return (
@@ -170,12 +199,31 @@ const Message = () => {
                 <p className="text-lg text-black">Experience: {teacher.experience} years</p>
                 <p className="text-lg text-black">Qualifications: {teacher.qualifications}</p>
                 <p className="text-lg text-black">Referral Code: {teacher.referralCode || 'N/A'}</p>
+                <button onClick={() => handleEditTeacher(teacher)} className="text-blue-500 ml-2">Edit</button>
+                <button onClick={() => handleDeleteTeacher(teacher.id)} className="text-red-500 ml-2">Delete</button>
               </div>
             ))
           ) : (
             <p>No teachers found.</p>
           )}
         </div>
+        {/* Form to Add or Edit Teacher */}
+        <form onSubmit={handleTeacherSubmit} className="mt-4">
+          <h2 className="text-2xl font-bold mb-4">{editingTeacher ? 'Edit Teacher' : 'Add New Teacher'}</h2>
+          {/* Add form fields here similar to newTeacher state */}
+          {/* Example field */}
+          <input
+            type="text"
+            placeholder="Name"
+            value={newTeacher.name}
+            onChange={(e) => setNewTeacher({ ...newTeacher, name: e.target.value })}
+            className="border p-2 mb-4"
+          />
+          {/* Other fields for email, phone, etc. */}
+          <button type="submit" className="py-3 px-6 bg-blue-500 text-white rounded-lg">
+            {editingTeacher ? 'Update Teacher' : 'Add Teacher'}
+          </button>
+        </form>
       </section>
 
       {/* Section for Business Forms */}
@@ -190,12 +238,31 @@ const Message = () => {
                 <p className="text-lg text-black">Gender: {form.gender}</p>
                 <p className="text-lg text-black">Email: {form.email}</p>
                 <p className="text-lg text-black">Message: {form.message}</p>
+                <button onClick={() => handleEditBusinessForm(form)} className="text-blue-500 ml-2">Edit</button>
+                <button onClick={() => handleDeleteBusinessForm(form.id)} className="text-red-500 ml-2">Delete</button>
               </div>
             ))
           ) : (
             <p>No business forms found.</p>
           )}
         </div>
+        {/* Form to Add or Edit Business Form */}
+        <form onSubmit={handleBusinessFormSubmit} className="mt-4">
+          <h2 className="text-2xl font-bold mb-4">{editingBusinessForm ? 'Edit Business Form' : 'Add New Business Form'}</h2>
+          {/* Add form fields here similar to newBusinessForm state */}
+          {/* Example field */}
+          <input
+            type="text"
+            placeholder="Name"
+            value={newBusinessForm.name}
+            onChange={(e) => setNewBusinessForm({ ...newBusinessForm, name: e.target.value })}
+            className="border p-2 mb-4"
+          />
+          {/* Other fields for age, gender, etc. */}
+          <button type="submit" className="py-3 px-6 bg-blue-500 text-white rounded-lg">
+            {editingBusinessForm ? 'Update Business Form' : 'Add Business Form'}
+          </button>
+        </form>
       </section>
 
       {/* Section for Enrollments */}
@@ -206,11 +273,16 @@ const Message = () => {
             enrollments.map((enrollment) => (
               <div key={enrollment.id} className="p-4 bg-yellow-100 rounded-lg shadow">
                 <p className="text-lg font-semibold text-black">Name: {enrollment.name}</p>
-                <p className="text-lg text-black">WhatsApp Number: {enrollment.whatsappNumber}</p>
+                <p className="text-lg text-black">Contact Number: {enrollment.contactNumber}</p>
+                <p className="text-lg text-black">Stream: {enrollment.stream}</p>
+                <p className="text-lg text-black">Qualification: {enrollment.qualification}</p>
+                
                 <p className="text-lg text-black">Course Title: {enrollment.courseTitle}</p>
                 <p className="text-lg text-black">
                   Timestamp: {new Date(enrollment.timestamp.seconds * 1000).toLocaleString()}
                 </p>
+                <button onClick={() => handleEditEnrollment(enrollment)} className="text-blue-500 ml-2">Edit</button>
+                <button onClick={() => handleDeleteEnrollment(enrollment.id)} className="text-red-500 ml-2">Delete</button>
               </div>
             ))
           ) : (
@@ -231,6 +303,7 @@ const Message = () => {
                 <p className="text-lg text-black">Price: {course.price}</p>
                 <button onClick={() => handleEditCourse(course)} className="text-blue-500 ml-2">Edit</button>
                 <button onClick={() => handleDeleteCourse(course.id)} className="text-red-500 ml-2">Delete</button>
+                <button onClick={() => handleEnrollClick(course)} className="text-green-500 ml-2">Enroll</button>
               </div>
             ))
           ) : (
@@ -239,67 +312,16 @@ const Message = () => {
         </div>
       </section>
 
-      {/* Form to Add or Edit Course */}
-      <section className="mt-12">
-        <h2 className="text-3xl font-bold mb-4">{editingCourse ? 'Edit Course' : 'Add New Course'}</h2>
-        <form onSubmit={handleCourseSubmit}>
-          <input
-            type="text"
-            placeholder="Course Title"
-            value={newCourse.title}
-            onChange={(e) => setNewCourse({ ...newCourse, title: e.target.value })}
-            className="border p-2 mb-4"
-          />
-          <input
-            type="text"
-            placeholder="Image URL"
-            value={newCourse.imageUrl}
-            onChange={handleImageUpload}
-            className="border p-2 mb-4"
-          />
-          <input
-            type="number"
-            placeholder="Months (Roadmap Duration)"
-            value={newCourse.months}
-            onChange={handleMonthChange}
-            className="border p-2 mb-4"
-          />
-          <div>
-            {Array.from({ length: newCourse.months }).map((_, monthIndex) => (
-              <div key={monthIndex} className="mb-4">
-                <h4 className="text-xl font-bold">Month {monthIndex + 1}</h4>
-                {newCourse.roadmap[monthIndex]?.weeks?.map((week, weekIndex) => (
-                  <div key={weekIndex}>
-                    <input
-                      type="text"
-                      placeholder="Week Title"
-                      value={week.week}
-                      onChange={(e) => handleRoadmapChange(monthIndex, weekIndex, 'week', e.target.value)}
-                      className="border p-2 mb-2"
-                    />
-                    <textarea
-                      placeholder="Topics (comma separated)"
-                      value={week.topics.join(', ')}
-                      onChange={(e) => handleRoadmapChange(monthIndex, weekIndex, 'topics', e.target.value.split(','))}
-                      className="border p-2 mb-2"
-                    />
-                  </div>
-                ))}
-                <button
-                  type="button"
-                  onClick={() => addWeek(monthIndex)}
-                  className="bg-gray-800 text-white px-4 py-2 rounded-lg"
-                >
-                  Add Week
-                </button>
-              </div>
-            ))}
-          </div>
-          <button type="submit" className="py-3 px-6 bg-blue-500 text-white rounded-lg">
-            {editingCourse ? 'Update Course' : 'Add Course'}
-          </button>
-        </form>
-      </section>
+      {/* Enrollment Form Modal */}
+      {showEnrollmentForm && (
+        <EnrollmentForm 
+          course={selectedCourse} 
+          onClose={handleCloseEnrollmentForm} 
+          enrollment={editingEnrollment} // Pass enrollment for editing
+        />
+      )}
+
+      {/* Forms for Adding/Editing Teachers and Business Forms are embedded in their sections */}
     </div>
   );
 };
