@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase'; // Adjust the path as necessary
+import { auth, firestore } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Adlogin = ({ isDarkMode }) => {
+const Adlogin = ({ isDarkMode, setUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -16,12 +17,32 @@ const Adlogin = ({ isDarkMode }) => {
     setError('');
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/message');
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Fetch user role from Firestore
+      const userDoc = await getDoc(doc(firestore, 'users', user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const userRole = userData.role; // Assume 'role' is stored in the user document
+
+        setUser({ email: user.email, role: userRole });
+
+        // Navigate based on user role
+        if (userRole === 'admin') {
+          navigate('/admin');
+        } else if (userRole === 'student') {
+          navigate('/student');
+        } else {
+          throw new Error('User role not defined.');
+        }
+      } else {
+        throw new Error('User document not found.');
+      }
     } catch (error) {
       setError('Failed to log in.');
       toast.error('Invalid email or password!', {
-        position: "top-right",
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -34,10 +55,9 @@ const Adlogin = ({ isDarkMode }) => {
 
   return (
     <div className={`min-h-screen flex ${isDarkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-900'}`}>
-      {/* Left side: Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12">
         <div className={`p-8 rounded-lg shadow-xl w-full max-w-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-          <h1 className={`text-3xl font-bold mb-6 text-center ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>Admin Login</h1>
+          <h1 className={`text-3xl font-bold mb-6 text-center ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>Login</h1>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -69,16 +89,14 @@ const Adlogin = ({ isDarkMode }) => {
               Login
             </button>
           </form>
-        </div>
-      </div>
 
-      {/* Right side: Image */}
-      <div className={`hidden md:block w-1/2 p-6 md:p-12 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-        <img
-          src="https://img.freepik.com/free-vector/flat-3d-isometric-design-man-sits-workplace-working-computer_1284-42638.jpg?t=st=1707105688~exp=1707106288~hmac=51ee94dd850023961942f6f78e0d309fa58051fd45173e5832185b6534a478e2" 
-          alt="Admin Login"
-          className="w-full h-full object-contain rounded-lg shadow-xl"
-        />
+          {/* Signup Link */}
+          <div className="mt-4 text-center">
+            <p className={isDarkMode ? 'text-gray-200' : 'text-gray-900'}>
+              Don't have an account? <Link to="./SignupPage" className="text-blue-500 hover:underline">Sign up</Link>
+            </p>
+          </div>
+        </div>
       </div>
       <ToastContainer />
     </div>

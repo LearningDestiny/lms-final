@@ -66,9 +66,11 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           <Link to="/cour" className="hover:text-blue-500">
             Courses
           </Link>
+         
+        
           <Link to="/admin-login" className="flex items-center space-x-2 hover:text-blue-500">
             <FaUserCircle />
-            <span>Admin Login</span>
+            <span> Login</span>
           </Link>
           <button onClick={toggleTheme} className="focus:outline-none">
             {isDarkMode ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-800" />}

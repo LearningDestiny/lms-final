@@ -1548,3 +1548,225 @@ export const categories = [
     imageUrl: "https://images.livemint.com/img/2022/11/29/1600x900/1df36746-700f-11ed-9470-6981fab06e1e_1669744728301.jpg"
   }
 ];
+
+
+
+export const workshops = [
+  {
+    "id": 1,
+    "title": "Full-Stack Web Development Workshop",
+    "instructor": "Jane Doe",
+    "rating": 4.8,
+    "ratingCount": 120,
+    "price": "2,999 Rs",
+    "imageUrl": "https://manilaworkshops.com/wp-content/uploads/2023/04/Manila-Worskhops-2-1024x512.png",
+    "lastUpdated": "September 2024",
+    "duration": "40 hours",
+    "lectureCount": 15,
+    "description": "Learn the basics of full-stack web development with hands-on sessions.",
+    "highlights": [
+      "HTML, CSS, JavaScript Basics",
+      "Introduction to Front-end Frameworks",
+      "Backend Development with Node.js",
+      "Working with Databases",
+      "Deploying a Full-Stack Application"
+    ],
+    "roadmap": [
+      {
+        "month": "Month 1",
+        "weeks": [
+          {
+            "week": "Week 1: Introduction to Web Development",
+            "topics": [
+              "Overview of Web Development",
+              "HTML & CSS Basics",
+              "JavaScript Introduction"
+            ]
+          },
+          {
+            "week": "Week 2: Frontend Development",
+            "topics": [
+              "Working with CSS Frameworks",
+              "JavaScript ES6 Features",
+              "Building Dynamic Web Pages"
+            ]
+          },
+          {
+            "week": "Week 3: Backend Development",
+            "topics": [
+              "Introduction to Node.js",
+              "Building REST APIs",
+              "Connecting to a Database"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Data Analysis Workshop with Python",
+    "instructor": "John Smith",
+    "rating": 4.7,
+    "ratingCount": 180,
+    "price": "3,499 Rs",
+    "imageUrl": "https://manilaworkshops.com/wp-content/uploads/2023/04/Manila-Worskhops-2-1024x512.png",
+    "lastUpdated": "October 2024",
+    "duration": "30 hours",
+    "lectureCount": 10,
+    "description": "Learn data analysis using Python libraries like Pandas and NumPy.",
+    "highlights": [
+      "Data Cleaning with Pandas",
+      "Data Visualization with Matplotlib",
+      "Data Aggregation and Analysis",
+      "Working with Jupyter Notebooks"
+    ],
+    "roadmap": [
+      {
+        "month": "Month 1",
+        "weeks": [
+          {
+            "week": "Week 1: Introduction to Data Analysis",
+            "topics": [
+              "Understanding Data Analysis",
+              "Setting up the Python Environment",
+              "Introduction to Pandas"
+            ]
+          },
+          {
+            "week": "Week 2: Data Visualization",
+            "topics": [
+              "Using Matplotlib for Visualizing Data",
+              "Creating Plots and Graphs",
+              "Data Presentation Techniques"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+
+
+export const events = [
+  {
+    "id": 1,
+    "title": "AI and Machine Learning Summit 2024",
+    "organizer": "Tech Corp",
+    "date": "November 15, 2024",
+    "location": "New York City, NY",
+    "price": "Free",
+    "imageUrl": "https://www.rrce.org/blog/wp-content/uploads/2022/11/Artifical-Intelligence.-Machine-Learning-at-RRCE.png",
+    "description": "A one-day summit to explore the latest trends and innovations in AI and Machine Learning.",
+    "agenda": [
+      {
+        "time": "10:00 AM - 11:00 AM",
+        "session": "Keynote: The Future of AI",
+        "speaker": "Dr. Jane Doe"
+      },
+      {
+        "time": "11:30 AM - 1:00 PM",
+        "session": "Workshop: Building Machine Learning Models",
+        "speaker": "John Smith"
+      },
+      {
+        "time": "2:00 PM - 3:30 PM",
+        "session": "Panel Discussion: Ethics in AI",
+        "speaker": "Various Industry Leaders"
+      }
+    ],
+    "highlights": [
+      "Networking Opportunities",
+      "Hands-on Workshops",
+      "Expert Panel Discussions"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Web Development Bootcamp",
+    "organizer": "Code Academy",
+    "date": "December 5-7, 2024",
+    "location": "Online",
+    "price": "1,999 Rs",
+    "imageUrl": "https://media.geeksforgeeks.org/wp-content/uploads/20231205165904/web-development-image.webp",
+    "description": "A 3-day bootcamp to master the fundamentals of web development.",
+    "agenda": [
+      {
+        "time": "Day 1: 9:00 AM - 5:00 PM",
+        "session": "Introduction to HTML & CSS",
+        "speaker": "Alice Johnson"
+      },
+      {
+        "time": "Day 2: 9:00 AM - 5:00 PM",
+        "session": "JavaScript for Beginners",
+        "speaker": "Bob Williams"
+      },
+      {
+        "time": "Day 3: 9:00 AM - 5:00 PM",
+        "session": "Building and Deploying a Website",
+        "speaker": "Charlie Brown"
+      }
+    ],
+    "highlights": [
+      "Live Coding Sessions",
+      "Real-World Projects",
+      "Interactive Q&A"
+    ]
+  }
+];
+
+export const internships = [
+  {
+    "id": 1,
+    "title": "Software Development Intern",
+    "company": "Tech Innovators",
+    "location": "Remote",
+    "duration": "3 months",
+    "stipend": "10,000 Rs/month",
+    "imageUrl": "https://blog.planview.com/wp-content/uploads/2020/01/Top-6-Software-Development-Methodologies.jpg",
+    "lastUpdated": "October 2024",
+    "description": "An opportunity to work on real-world software development projects with experienced professionals.",
+    "requirements": [
+      "Basic knowledge of JavaScript",
+      "Familiarity with Git and GitHub",
+      "Good problem-solving skills"
+    ],
+    "responsibilities": [
+      "Assist in the development of web applications",
+      "Participate in code reviews",
+      "Collaborate with the development team to brainstorm new features"
+    ],
+    "highlights": [
+      "Hands-on Experience",
+      "Mentorship from Senior Developers",
+      "Flexible Working Hours"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Data Analyst Intern",
+    "company": "DataCorp",
+    "location": "On-site",
+    "duration": "6 months",
+    "stipend": "15,000 Rs/month",
+    "imageUrl": "https://www.chlsoftech.com/images/UploadedImages/thumbs/0000244_software%20development%20company.jpeg",
+    "lastUpdated": "November 2024",
+    "description": "Work with large datasets and help the team derive actionable insights.",
+    "requirements": [
+      "Proficiency in Python and SQL",
+      "Knowledge of data visualization tools",
+      "Strong analytical skills"
+    ],
+    "responsibilities": [
+      "Analyze and interpret complex data sets",
+      "Create visual reports using data visualization tools",
+      "Assist in data collection and preprocessing"
+    ],
+    "highlights": [
+      "Exposure to Real-World Data",
+      "Opportunity to Work with Experienced Data Scientists",
+      "Certificate upon Completion"
+    ]
+  }
+];
+

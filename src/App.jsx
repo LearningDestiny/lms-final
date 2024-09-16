@@ -26,13 +26,23 @@ import Adminview from './admin-view/Adminview';
 import Adlogin from '../src/adminmes/Adlogin'; 
 import Message from './adminmes/Message';
 import Contactsform from './Pages/Contactsform';
+import StudentLogin from './studentpanel/StudentLogin';
+import RegisterForm from './enrollpages/RegisterForm';
+import StudentDashboard from './studentpanel/StudentDashboard'; // Import the StudentDashboard component
 
-
-
-// AdminLayout component for protected routes
+// AdminLayout component for protected admin routes
 const AdminLayout = ({ children }) => {
   const { currentUser } = useAuth();
-  if (!currentUser) {
+  if (!currentUser || currentUser.role !== 'admin') {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
+
+// StudentLayout component for protected student routes
+const StudentLayout = ({ children }) => {
+  const { currentUser } = useAuth();
+  if (!currentUser || currentUser.role !== 'student') {
     return <Navigate to="/login" replace />;
   }
   return children;
@@ -61,22 +71,23 @@ const App = () => {
           <Route path="/businessForm" element={<BusinessForm />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/cour" element={<Cour />} />
-          <Route path="/cour/:courseId" element={<CourseDetails />} /> 
-          <Route path="/admin-login" element={<Adlogin />} /> 
-          <Route path="/message" element={<Message />} /> 
-          <Route path="/Contactsform" element={<Contactsform/>}/>
-          
+          <Route path="/cour/:courseId" element={<CourseDetails />} />
+          <Route path="/admin-login" element={<Adlogin />} />
+          <Route path="/message" element={<Message />} />
+          <Route path="/Contactsform" element={<Contactsform />} />
+          <Route path="/studentlogin" element={<StudentLogin />} />
+          <Route path="/register/:type" element={<RegisterForm />} />
 
           {/* Protected Admin Dashboard Routes */}
           <Route 
-            path="/admin-dashboard" 
+            path="/admin-dashboard/*" 
             element={
               <AdminLayout>
                 <AdminDashboard />
               </AdminLayout>
             }
           >
-            <Route path='adminview' element={<Adminview/>}/>
+            <Route path="adminview" element={<Adminview />} />
             <Route path="addCourses" element={<AddCourses />} />
             <Route path="allCourses" element={<AllCourses />} />
             <Route path="course/:courseId" element={<CoursePreview />} />
@@ -84,6 +95,16 @@ const App = () => {
             <Route path="analytics" element={<Analytics />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+
+          {/* Protected Student Dashboard Route */}
+          <Route
+            path="/student-dashboard"
+            element={
+              <StudentLayout>
+                <StudentDashboard />
+              </StudentLayout>
+            }
+          />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
       </div>
